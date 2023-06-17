@@ -8,7 +8,7 @@ class RepositoryServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->singleton(\App\Contracts\ArusKas\KasMasukContract::class, \App\Services\ArusKas\KasMasukService::class);    
-        $this->app->singleton(\App\Contracts\ArusKas\KasKeluarContract::class, \App\Services\ArusKas\KasKeluarService::class);    
+        $this->app->singleton(\App\Contracts\KasMasukContract::class, \App\Services\KasMasukService::class);    
+        $this->app->singleton(\App\Contracts\KasKeluarContract::class, \App\Services\KasKeluarService::class);    
     }
 }

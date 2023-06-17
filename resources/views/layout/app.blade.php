@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
         <link rel="stylesheet" href="{{ asset('template/assets/css/sweetalert2.min.css') }}">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
         <!-- Template CSS -->
         <link rel="stylesheet" href="{{ asset('template/assets/css/style.css') }}">
@@ -218,6 +219,7 @@
         <!-- JS Libraies -->
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
         <!-- Template JS File -->
         <script src="{{ asset('template/assets/js/scripts.js') }}"></script>

@@ -9,152 +9,73 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Daftar Kas Masuk</h4>
-                    <div class="card-header-action">
-                        <button class="btn btn-primary" data-target="#modal-add" data-toggle="modal">
-                            Tambah Data
-                        </button>
-                    </div>
+                    <h4>Laporan Kas Masuk</h4>
                 </div>
                 <div class="card-body">
-                    <table class="table table-hover" id="table" style="width: 100%">
-                        <thead>
-                            <tr>
-                                <th class="text-center">ID Transaksi</th>
-                                <th class="text-center">Tanggal Transaksi</th>
-                                <th class="text-center">Nama Jamaah</th>
-                                <th class="text-center">Nominal</th>
-                                <th class="text-center">Jenis</th>
-                                <th class="text-center">Deskripsi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
-@section('modal')
-    <div class="modal fade" id="modal-add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah COA</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="form-add">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label">No. COA</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control numeric" id="no_coa" name="no_coa" placeholder="Masukan No. COA">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label">Nama COA</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nama_coa" name="nama_coa" placeholder="Masukan Nama COA">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label">Posisi</label>
-                            <div class="col-sm-9">
-                                <select name="posisi" id="posisi" class="form-control">
-                                    <option value="">Pilih Posisi</option>
-                                    <option value="d">Debit</option>
-                                    <option value="k">Kredit</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label">Saldo Awal</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control numeric" id="saldo_awal" name="saldo_awal" placeholder="Masukan Saldo Awal" value="0">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit COA</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label">Tanggal</label>
+                        <div class="col-sm-4">
+                            <div class="d-flex align-items-center">
+                                <input type="text" name="date_from" id="date_from" class="form-control" autocomplete="off">
+                                <div class="m-r-10 m-l-10">s/d</div>
+                                <input type="text" name="date_to" id="date_to" class="form-control" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label">Kas Masuk</label>
+                        <div class="col-sm-4">
+                            <select name="kas_masuk" id="kas_masuk" class="form-control">
+                                @foreach ($kas as $item)
+                                <option value="{{ $item->kode_kas }}">{{ $item->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-4">
+                            <button class="btn btn-primary" type="button" id="btn-filter"> Filter</button>
+                        </div>
+                    </div>
+
+                    <div class="d-none" id="content">
+                        <hr>
+                        <table class="table table-hover" id="table" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th class="text-center text-nowrap">No</th>
+                                    <th class="text-center text-nowrap">ID Transaksi</th>
+                                    <th class="text-center text-nowrap">Tanggal Transaksi</th>
+                                    <th class="text-center text-nowrap">Nama Jamaah</th>
+                                    <th class="text-center text-nowrap">Nominal</th>
+                                    <th class="text-center text-nowrap">Nama Kas</th>
+                                    <th class="text-center text-nowrap">Deskripsi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <form id="form-edit">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label">No. COA</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control numeric" id="no_coa_edit" name="no_coa" placeholder="Masukan No. COA">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label">Nama COA</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nama_coa_edit" name="nama_coa" placeholder="Masukan Nama COA">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label">Posisi</label>
-                            <div class="col-sm-9">
-                                <select name="posisi" id="posisi_edit" class="form-control">
-                                    <option value="">Pilih Posisi</option>
-                                    <option value="d">Debit</option>
-                                    <option value="k">Kredit</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label">Saldo Awal</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control numeric" id="saldo_awal_edit" name="saldo_awal" placeholder="Masukan Saldo Awal" value="0">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
 @endsection
+
 @section('script')
     <script>
-        function resetForm() {
-            $('#form-add')[0].reset();
-            $('label.error').remove();
-            $('.form-control.is-invalid').removeClass('is-invalid');
-        }
-
-        function simpan() {
+        function getList() {
             let params = {
-                no_coa: $("#no_coa").val(),
-                nama_coa: $("#nama_coa").val(),
-                posisi: $("#posisi").val(),
-                saldo_awal: $("#saldo_awal").val(),
+                date_from: $("#date_from").val(),
+                date_to: $("#date_to").val(),
+                kas_masuk: $("#kas_masuk").val(),
             }
+
             $.ajax({
-                url: '{{ url('masterdata/coa/store') }}',
+                url: '{{ url('laporan/kas-masuk/filter') }}',
                 type: "post",
                 headers: { 'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content') },
                 beforeSend: function() {
@@ -162,102 +83,69 @@
                 },
                 data: params,
                 success: function(response) {
-                    swal({
-                        title: "",
-                        text: response.message,
-                        type: "success"
-                    }).then(function() {
+                    let data = response;
+                    let row = '';
+
+                    if (data.length == 0) {
+                        swal('', 'Data tidak ditemukan!', 'info');
+                    }
+
+                    if (data.length > 0) {
                         swal.close();
-                        resetForm();
-                        location.reload();
-                    });
+                        $("#content").removeClass('d-none');
+                        let no = 1;
+                        for (let i = 0; i < data.length; i++) {
+                            row = `
+                                <tr>
+                                    <td>${ no++ }</td>
+                                    <td>${ data[i].id_transaksi }</td>
+                                    <td>${ data[i].tanggal_transaksi }</td>
+                                    <td>${ data[i].nama_jamaah }</td>
+                                    <td class="text-right">${ data[i].nominal }</td>
+                                    <td>${ data[i].nama }</td>
+                                    <td>${ data[i].deskripsi }</td>
+                                </tr>
+                            `;
+                        }
+                        $("#tbody").html(row);
+
+                        $('#table').DataTable({
+                            scrollX: true,
+                            order: [
+                                [0, 'asc']
+                            ],
+                        });
+                    }
                 },
                 error: function(err) {
                     @include('swal-error');
                     console.log(err)
                 }
-            })
+            });
         }
 
         $(document).ready(function() {
-            $('#table').DataTable({
-                order: [
-                    [1, 'asc']
-                ],
-                aoColumnDefs: [
-                    { 
-                        bSortable: false, 
-                        aTargets: [0]
-                    }, 
-                ]
-            });
+            let todaydt = new Date();
 
-            $(".modal").on("hidden.bs.modal", function() {
-                resetForm();
-            });
+            $("#date_from").datepicker({
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                changeYear: true,
+                endDate: todaydt,
+                onSelect: function (date) {
+                    var date2 = $('#date_from').datepicker('getDate');
+                    $('#date_to').datepicker('option', 'minDate', date2);
+                }, 
+            }).datepicker("setDate", todaydt)
 
-            $(".btn-edit").on("click", function() {
-                let no_coa = $(this).data("no_coa");
-                let nama_coa = $(this).data("nama_coa");
-                let posisi = $(this).data("posisi");
-                let saldo_awal = $(this).data("saldo_awal");
+            $('#date_to').datepicker({
+                dateFormat: "dd/mm/yy",  
+                changeMonth: true,
+                changeYear: true,
+            }).datepicker("setDate", todaydt);
 
-                $("#no_coa_edit").val(no_coa);
-                $("#nama_coa_edit").val(nama_coa);
-                $("#posisi_edit").val(posisi);
-                $("#saldo_awal_edit").val(saldo_awal);
-            })
-
-            $.validator.setDefaults({
-                debug: false,
-                ignore: "",
-                highlight: function(element) {
-                    $(element).closest('.form-control').addClass('is-invalid');
-                    $(element).siblings('.select2-container').find('.select2-selection').addClass('is-invalid');
-                },
-                unhighlight: function(element) {
-                    $(element).closest('.form-control').removeClass('is-invalid');
-                    $(element).siblings('.select2-container').find('.select2-selection').removeClass('is-invalid');
-                },
-                errorPlacement: function(error, element) {
-                    if (element.hasClass('select-dua') || element.hasClass('select2-without-search')) {
-                        error.insertAfter(element.siblings('.select2'));
-                    } else {
-                        error.insertAfter(element);   
-                    }
-                }
-            });
-            
-            $("#form-add").validate({
-                submitHandler: function() {
-                    swal({
-                        text: "Apakah anda yakin?",
-                        type: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Ya',
-                        cancelButtonText: 'Tidak'
-                    }).then((value) => {
-                        if (value) {
-                            simpan();
-                        }
-                    });
-                },
-                rules: {
-                    no_coa: {
-                        required: true,
-                    },
-                    nama_coa: {
-                        required: true,
-                    },
-                    posisi: {
-                        required: true,
-                    },
-                    saldo_awal: {
-                        required: true,
-                    },
-                }
+            $("#btn-filter").on("click", function() {
+                getList();
             });
         });
     </script>

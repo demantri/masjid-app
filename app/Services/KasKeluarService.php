@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Services\ArusKas;
+namespace App\Services;
 
-use App\Contracts\ArusKas\KasMasukContract;
+use App\Contracts\KasKeluarContract;
 use Illuminate\Support\Facades\DB;
 
-final class KasMasukService implements KasMasukContract
+final class KasKeluarService implements KasKeluarContract
 {
     public function show()
     {
-        $data = DB::select("select * from kas where jenis = '1'");
+        $data = DB::select("select * from kas where jenis = '2'");
         return $data;    
     }
 
@@ -22,7 +22,7 @@ final class KasMasukService implements KasMasukContract
             'nominal' => $data['nominal'],
             'id_kas' => $data['jenis_transaksi'],
             'deskripsi' => $data['deskripsi'],
-            'jenis_transaksi' => 'Kas masuk'
+            'jenis_transaksi' => 'Kas keluar'
         ];
 
         $data = DB::table('transaksi')->insert($params);
