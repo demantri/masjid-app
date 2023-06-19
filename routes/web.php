@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArusKas\KasKeluar;
 use App\Http\Controllers\ArusKas\KasMasuk;
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\Laporan\ArusKas;
 use App\Http\Controllers\Laporan\KasMasuk as LaporanKasMasuk;
 use App\Http\Controllers\Masterdata\COA;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +50,10 @@ Route::prefix('laporan')->group(function () {
 
     Route::prefix('kas-keluar')->group(function () {
         Route::get('/', []);
+    });
+
+    Route::prefix('arus-kas')->group(function () {
+        Route::get('/', [ArusKas::class, 'index']);
     });
 
     Route::prefix('jurnal-umum')->group(function () {

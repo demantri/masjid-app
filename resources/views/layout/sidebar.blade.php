@@ -24,6 +24,7 @@
             <li class="menu-header">Laporan</li>
             <li class="{{ Request::is('laporan/kas-masuk') ? 'active' : '' }}"><a class="nav-link" href="{{ url('laporan/kas-masuk') }}"><i class="fas fa-file"></i> <span>Kas Masuk</span></a></li>
             <li class="{{ Request::is('laporan/kas-keluar') ? 'active' : '' }}"><a class="nav-link" href="{{ url('laporan/kas-keluar') }}"><i class="fas fa-file"></i> <span>Kas Keluar</span></a></li>
+            <li class="{{ Request::is('laporan/arus-kas') ? 'active' : '' }}"><a class="nav-link" href="{{ url('laporan/arus-kas') }}"><i class="fas fa-file"></i> <span>Arus Kas</span></a></li>
             <li class="{{ Request::is('laporan/kas-keluar') ? 'active' : '' }}"><a class="nav-link" href="{{ url('laporan/jurnal') }}"><i class="fas fa-file"></i> <span>Jurnal Umum</span></a></li>
             <li class="{{ Request::is('laporan/kas-keluar') ? 'active' : '' }}"><a class="nav-link" href="{{ url('laporan/bukubesar') }}"><i class="fas fa-file"></i> <span>Buku Besar</span></a></li>
 
