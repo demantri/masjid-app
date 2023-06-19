@@ -86,6 +86,10 @@
                     let data = response;
                     let row = '';
 
+                    if ( $.fn.DataTable.isDataTable('#table') ) {
+                        $('#table').DataTable().destroy();
+                    }
+
                     if (data.length == 0) {
                         swal('', 'Data tidak ditemukan!', 'info');
                     }
@@ -95,7 +99,7 @@
                         $("#content").removeClass('d-none');
                         let no = 1;
                         for (let i = 0; i < data.length; i++) {
-                            row = `
+                            row += `
                                 <tr>
                                     <td>${ no++ }</td>
                                     <td>${ data[i].id_transaksi }</td>
@@ -108,9 +112,10 @@
                             `;
                         }
                         $("#tbody").html(row);
-
                         $('#table').DataTable({
                             scrollX: true,
+                            scrollCollapse: true,
+                            destroy: true,
                             order: [
                                 [0, 'asc']
                             ],

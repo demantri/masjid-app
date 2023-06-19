@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ArusKas;
 
-use App\Contracts\ArusKas\KasKeluarContract;
+use App\Contracts\KasKeluarContract;
 use App\Http\Controllers\Controller;
 use App\Models\Code;
 use App\Models\Kas;
